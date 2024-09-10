@@ -29,6 +29,8 @@ NPZ = '.npz'
 def log_gaussian(x, mean, sigma):
     return -0.5 * np.log(2.0 * np.pi) - nd.log(sigma) - (x - mean) ** 2 / (2 * sigma ** 2)
 
+def log_laplace(x, mean, b):
+    return -np.log(2 * b) - np.abs(x - mean) / b
 
 def sample_epsilons(param_shapes, ctx):
     return [nd.random_normal(shape=shape, loc=0., scale=1.0, ctx=ctx) for shape in param_shapes]
